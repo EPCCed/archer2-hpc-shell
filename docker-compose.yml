@@ -1,0 +1,21 @@
+---
+version: "3.3"
+services:
+  server:
+    # image: carpentries/python-novice-gapminder:latest
+    image: swc/rstudio:4.3.1
+    build:
+      context: ./docker
+    volumes:
+      - ./:/home/rstudio/lesson
+    ports:
+      - target: 8787
+        published: 8787
+        protocol: tcp
+        mode: host
+      - target: 4321
+        published: 4321
+        protocol: tcp
+        mode: host
+    environment:
+      - DISABLE_AUTH=true
